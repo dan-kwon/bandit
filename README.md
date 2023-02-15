@@ -1,4 +1,6 @@
 <img src="resources/slot-machine.png" width = "75" align="center">
+</br>
+</br>
 
 Bandit
 ====================
