@@ -1,4 +1,5 @@
 import random
+import math
 
 class EpsilonGreedy():
     """
@@ -36,3 +37,4 @@ class EpsilonGreedy():
         new_value = ((n - 1) / float(n)) * prev_value + (1 / float(n)) * success_flag * self.rewards[chosen_arm]
         self.values[chosen_arm] = new_value
         return
+

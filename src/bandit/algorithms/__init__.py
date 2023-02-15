@@ -1,5 +1,7 @@
-from ._standard import EpsilonGreedy
+from ._epsilon_greedy import EpsilonGreedy
+from ._softmax import Softmax
 
 __all__ = [
-    EpsilonGreedy
+    EpsilonGreedy,
+    Softmax
 ]
