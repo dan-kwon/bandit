@@ -7,3 +7,15 @@ Bandit
 
 *All use of this code is at your own risk.*
 
+</br>
+
+## Installation
+--------------------
+Recommended method of installation is to use pip 
+```
+pip install bandit
+```
+
+
+## Quickstart
+--------------------
