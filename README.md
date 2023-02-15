@@ -1,11 +1,11 @@
 <img src="resources/slot-machine.png" width = "75" align="center">
 
-Bandit
+Jackpot
 ====================
 
-**bandit** is a Python module forked from the John Myles Whyte's Book [Bandit Algorithms for Website Optimization](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/) along with the accompanying [code repository](https://github.com/johnmyleswhite/BanditsBook).
+**jackpot** is a Python module for developing and testing multi-armed bandit algorithms. Forked from the accompanying [code repository](https://github.com/johnmyleswhite/BanditsBook) for (Bandit Algorithms for Website Optimization](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/).
 
-*All use of this code is at your own risk.*
+*Any use of this code is at your own risk.*
 
 </br>
 
@@ -13,7 +13,7 @@ Bandit
 --------------------
 Recommended method of installation is to use pip 
 ```
-pip install bandit
+pip install jackpot
 ```
 
 
