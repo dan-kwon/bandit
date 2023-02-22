@@ -1,9 +1,9 @@
-Jackpot
+Banditcoot
 ====================
 
-<img align="left" width="75" src="resources/slot-machine.png" />
+<img align="left" width="75" src="resources/banditcoot.png" />
 
-**jackpot** is a Python module is intended for my own personal use when developing and testing multi-armed bandit algorithms. Forked from the accompanying [code repository](https://github.com/johnmyleswhite/BanditsBook) for [Bandit Algorithms for Website Optimization](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/).
+**banditcoot** is a Python module is intended for my own personal use when developing and testing multi-armed bandit algorithms. Forked from the accompanying [code repository](https://github.com/johnmyleswhite/BanditsBook) for [Bandit Algorithms for Website Optimization](https://www.oreilly.com/library/view/bandit-algorithms-for/9781449341565/).
 
 *Any use of this code is at your own risk.*
 </br>
