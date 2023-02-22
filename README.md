@@ -12,7 +12,7 @@ Banditcoot
 --------------------
 Recommended method of installation is to use pip 
 ```
-pip install jackpot
+pip install banditcoot
 ```
 
 
