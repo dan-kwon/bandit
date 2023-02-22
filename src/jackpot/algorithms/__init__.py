@@ -1,9 +1,10 @@
-from ._epsilon_greedy import EpsilonGreedy , ind_max
+from ._epsilon_greedy import EpsilonGreedy , ind_max, hello_world
 from ._softmax import Softmax, categorical_draw
 
 __all__ = [
     EpsilonGreedy,
     Softmax,
     ind_max,
-    categorical_draw
+    categorical_draw,
+    hello_world
 ]
