@@ -1,13 +1,19 @@
+import random
+
 def categorical_draw(probs):
-  z = random.random()
-  cum_prob = 0.0
-  for i in range(len(probs)):
-    prob = probs[i]
-    cum_prob += prob
-    if cum_prob > z:
-      return i
-  
-  return len(probs) - 1
+    """
+    Given an array if probabilities, returns  
+    """
+    probs = [0.2, 0.4, 0.1, 0.3]
+    z = random.random()
+    cum_prob = 0.0
+    for i in range(len(probs)):
+        prob = probs[i]
+        cum_prob += prob
+        if cum_prob > z:
+            return i
+    return len(probs) - 1
+    cum_prob
 
 class Softmax():
     """
@@ -44,8 +50,8 @@ class Softmax():
         return
     
     def select_arm(self):
-        z = sum([math.exp(v / self.temperature) for v in self.values])
-        probs = [math.exp(v / self.temperature) / z for v in self.values]
+        z = sum([math.exp(v / self.tau) for v in self.values])
+        probs = [math.exp(v / self.tau) / z for v in self.values]
         return categorical_draw(probs)
 
     def update(self, chosen_arm, reward):

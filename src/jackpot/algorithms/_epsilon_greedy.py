@@ -1,14 +1,33 @@
 import random
-import math
+
+def ind_max(x):
+    """
+    returns the index that corresponds to the maximum value in array x
+    """
+    m = max(x)
+    return x.index(m)
 
 class EpsilonGreedy():
     """
-    epsilon: percentage of time the bandit explores
-    n_arms: number of arms for bandit algorithm
-    rewards: average units of reward observed for each successful arm pull
-    conv_rates: success rates for each arm
-    counts: number of times each arm has been pulled
-    values: average number of successes observed for each arm (i.e. conversion rate)
+
+    Parameters
+    ----------
+    epsilon: float
+        Percentage of time the bandit explores
+    n_arms: int
+        Number of arms
+    rewards: array
+        Average units of reward observed for each successful arm pull
+    conv_rates: array
+        Success rates for each arm
+    counts: array
+        number of times each arm has been pulled
+    values: array
+        average number of successes observed for each arm (i.e. conversion rate)
+
+    Attributes
+    ----------
+
     """
     def __init__(self, epsilon, n_arms, rewards, conv_rates=None, counts=None):
         self.epsilon    = epsilon
