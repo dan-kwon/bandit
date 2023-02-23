@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "banditcoot"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python module for developing and testing multi-armed bandits"
 authors = ["dan-kwon <danielkwon02@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.2.1"
