@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "banditcoot"
-version = "0.1.0"
+version = "0.1.1"
 description = "Python module for developing and testing multi-armed bandits"
 authors = ["dan-kwon <danielkwon02@gmail.com>"]
 license = "MIT"
