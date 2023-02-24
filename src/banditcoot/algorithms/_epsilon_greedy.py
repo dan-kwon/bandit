@@ -36,8 +36,8 @@ class EpsilonGreedy():
     def __init__(self, epsilon, n_arms, rewards, conv_rates=None, counts=None):
         self.epsilon    = epsilon
         self.rewards    = rewards
-        self.conv_rates = [0 for i in range(n_arms)] if conv_rates == None else conv_rates
-        self.counts     = [0 for i in range(n_arms)] if counts == None else counts
+        self.conv_rates = [0 for i in range(n_arms)] if conv_rates is None else conv_rates
+        self.counts     = [0 for i in range(n_arms)] if counts is None else counts
         self.values     = [i*j for i,j in zip(conv_rates,rewards)]
         # raise error if n_arms does not equal number of entries in counts or values
         if ((n_arms != len(self.counts)) or (n_arms != len(self.values)) or (n_arms != len(self.conv_rates))):
@@ -58,6 +58,16 @@ class EpsilonGreedy():
         n = self.counts[chosen_arm]
         prev_value = self.values[chosen_arm]
         new_value = ((n - 1) / float(n)) * prev_value + (1 / float(n)) * success_flag * self.rewards[chosen_arm]
+        self.values[chosen_arm] = new_value
+        return
+    
+    def batch_update(self, chosen_arm, num_times_chosen, success_flag):
+        # increments counts for chosen arm
+        self.counts[chosen_arm] = self.counts[chosen_arm] + num_times_chosen
+        # calculate new average reward for chosen arm
+        n = self.counts[chosen_arm]
+        prev_value = self.values[chosen_arm]
+        new_value = ((n - num_times_chosen) / float(n)) * prev_value + (num_times_chosen / float(n)) * success_flag * self.rewards[chosen_arm]
         self.values[chosen_arm] = new_value
         return
 
