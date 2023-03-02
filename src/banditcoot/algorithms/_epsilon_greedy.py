@@ -61,13 +61,13 @@ class EpsilonGreedy():
         self.values[chosen_arm] = new_value
         return
     
-    def batch_update(self, chosen_arm, num_times_chosen, success_flag):
+    def batch_update(self, chosen_arm, num_times_chosen, num_successes):
         # increments counts for chosen arm
         self.counts[chosen_arm] = self.counts[chosen_arm] + num_times_chosen
         # calculate new average reward for chosen arm
         n = self.counts[chosen_arm]
         prev_value = self.values[chosen_arm]
-        new_value = ((n - num_times_chosen) / float(n)) * prev_value + (num_times_chosen / float(n)) * success_flag * self.rewards[chosen_arm]
+        new_value = ((n - num_times_chosen) / float(n)) * prev_value + (num_successes / float(n)) * self.rewards[chosen_arm]
         self.values[chosen_arm] = new_value
         return
 
