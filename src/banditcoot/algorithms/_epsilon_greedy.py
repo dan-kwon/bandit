@@ -26,12 +26,11 @@ class EpsilonGreedy():
         Success rates for each arm
     counts: array
         number of times each arm has been pulled
-    values: array
-        average number of successes observed for each arm (i.e. conversion rate)
 
     Attributes
     ----------
-
+    values: array
+        average number of successes observed for each arm (i.e. conversion rate)
     """
     def __init__(self, epsilon, n_arms, rewards, conv_rates=None, counts=None):
         self.epsilon    = epsilon
@@ -61,13 +60,28 @@ class EpsilonGreedy():
         self.values[chosen_arm] = new_value
         return
     
-    def batch_update(self, chosen_arm, num_times_chosen, num_successes):
+    def batch_update(self, chosen_arm, num_times_chosen, num_successes, observed_reward=None):
+        
+        observed_reward = self.rewards[chosen_arm] if observed_reward is None else observed_reward
+
         # increments counts for chosen arm
-        self.counts[chosen_arm] = self.counts[chosen_arm] + num_times_chosen
+        prev_count              = self.counts[chosen_arm]
+        new_count               = prev_count + num_times_chosen
+        self.counts[chosen_arm] = new_count
+
+        # update conversion rates
+        prev_conv_rate              = self.conv_rates[chosen_arm]
+        prev_successes              = prev_count * prev_conv_rate
+        new_conv_rate               = (prev_successes / (prev_successes + num_successes)) * prev_conv_rate + (num_successes / (prev_successes + num_successes)) * (num_successes/num_times_chosen)
+        self.conv_rates[chosen_arm] = new_conv_rate
+
         # calculate new average reward for chosen arm
-        n = self.counts[chosen_arm]
-        prev_value = self.values[chosen_arm]
-        new_value = ((n - num_times_chosen) / float(n)) * prev_value + (num_successes / float(n)) * self.rewards[chosen_arm]
-        self.values[chosen_arm] = new_value
+        total_successes = [i*j for i,j in zip(self.counts, self.conv_rates)]
+        prev_reward = self.rewards[chosen_arm]
+        new_reward = (prev_successes / (prev_successes + num_successes)) * prev_reward + (num_successes / (prev_successes + num_successes)) * observed_reward
+        self.rewards[chosen_arm] = new_reward
+        
+        # calculate new average value for chosen arm
+        self.values[chosen_arm] = self.conv_rates[chosen_arm] * self.rewards[chosen_arm]
         return
 
