@@ -1,9 +1,5 @@
 import random
 
-def hello_world(x):
-    result = "hello "+x
-    return result
-
 def ind_max(x):
     """
     returns the index that corresponds to the maximum value in array x
