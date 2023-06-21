@@ -33,7 +33,7 @@ class EpsilonGreedy():
         self.rewards    = rewards
         self.conv_rates = [0 for i in range(n_arms)] if conv_rates is None else conv_rates
         self.counts     = [0 for i in range(n_arms)] if counts is None else counts
-        self.values     = [i*j for i,j in zip(conv_rates,rewards)]
+        self.values     = [i*j for i,j in zip(self.conv_rates,self.rewards)]
         # raise error if n_arms does not equal number of entries in counts or values
         if ((n_arms != len(self.counts)) or (n_arms != len(self.values)) or (n_arms != len(self.conv_rates))):
             raise ValueError("n_arms does not match the length of counts/values/conv_rates")
