@@ -7,6 +7,12 @@ def ind_max(x):
     m = max(x)
     return x.index(m)
 
+def hello_world():
+    """
+    test function to see if package is installed in editable mode
+    """
+    print("hello universe")
+
 class EpsilonGreedy():
     """
 
@@ -58,26 +64,25 @@ class EpsilonGreedy():
     
     def batch_update(self, chosen_arm, num_times_chosen, num_successes, observed_reward=None):
         
-        observed_reward = self.rewards[chosen_arm] if observed_reward is None else observed_reward
+        # save previous algo parameter values
+        prev_counts     = self.counts.copy()
+        prev_conv_rates = self.conv_rates.copy()
+        prev_rewards    = self.rewards.copy()
+        prev_values     = self.values.copy()
 
         # increments counts for chosen arm
-        prev_count              = self.counts[chosen_arm]
-        new_count               = prev_count + num_times_chosen
-        self.counts[chosen_arm] = new_count
+        self.counts[chosen_arm] = prev_counts[chosen_arm] + num_times_chosen
 
         # update conversion rates
-        prev_conv_rate              = self.conv_rates[chosen_arm]
-        prev_successes              = prev_count * prev_conv_rate
-        new_conv_rate               = (prev_successes / (prev_successes + num_successes)) * prev_conv_rate + (num_successes / (prev_successes + num_successes)) * (num_successes/num_times_chosen)
-        self.conv_rates[chosen_arm] = new_conv_rate
+        self.conv_rates[chosen_arm] = ((prev_conv_rates[chosen_arm] * prev_counts[chosen_arm]) + num_successes) / self.counts[chosen_arm]
 
         # calculate new average reward for chosen arm
-        total_successes = [i*j for i,j in zip(self.counts, self.conv_rates)]
-        prev_reward = self.rewards[chosen_arm]
-        new_reward = (prev_successes / (prev_successes + num_successes)) * prev_reward + (num_successes / (prev_successes + num_successes)) * observed_reward
-        self.rewards[chosen_arm] = new_reward
+        observed_reward = self.rewards[chosen_arm] if observed_reward is None else observed_reward
+        prev_total_rewards = (prev_rewards[chosen_arm] * prev_conv_rates[chosen_arm] * prev_counts[chosen_arm])
+        new_total_rewards  = num_successes * observed_reward
+        self.rewards[chosen_arm] = (prev_total_rewards + new_total_rewards) / self.counts[chosen_arm]
         
         # calculate new average value for chosen arm
-        self.values[chosen_arm] = self.conv_rates[chosen_arm] * self.rewards[chosen_arm]
+        self.values[chosen_arm] = (self.conv_rates[chosen_arm] * self.counts[chosen_arm] * self.rewards[chosen_arm])/self.counts[chosen_arm]
         return
 
