@@ -77,7 +77,7 @@ class EpsilonGreedy():
         self.conv_rates[chosen_arm] = ((prev_conv_rates[chosen_arm] * prev_counts[chosen_arm]) + num_successes) / self.counts[chosen_arm]
 
         # calculate new average reward for chosen arm
-        observed_reward = self.rewards[chosen_arm] if observed_reward is None else observed_reward
+        observed_reward = prev_rewards[chosen_arm] if observed_reward is None else observed_reward
         prev_total_rewards = (prev_rewards[chosen_arm] * prev_conv_rates[chosen_arm] * prev_counts[chosen_arm])
         new_total_rewards  = num_successes * observed_reward
         self.rewards[chosen_arm] = (prev_total_rewards + new_total_rewards) / self.counts[chosen_arm]
