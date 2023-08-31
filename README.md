@@ -1,3 +1,5 @@
+[![Pytest](https://github.com/dan-kwon/banditcoot/actions/workflows/run_pytest.yml/badge.svg?branch=master)](https://github.com/dan-kwon/banditcoot/actions/workflows/run_pytest.yml)
+
 Banditcoot
 ====================
 
